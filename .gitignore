@@ -1,0 +1,4 @@
+.idea
+.docker/.env
+.docker/database
+code/php-samples-12b

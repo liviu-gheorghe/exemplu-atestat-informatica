@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  database:
+    image: mysql
+    env_file: .env
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - ./database/data:/var/lib/mysql
+  php:
+    build:
+      context: ./php
+    env_file: .env
+    ports:
+      - "${PHP_PORT}:80"
+    volumes:
+      - ../code:/var/www/html
+
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=database
+    ports:
+      - "5001:80"
